@@ -20,7 +20,7 @@ const Inbox = memo(() => {
 
   return (
     <Link
-      aria-label={'Lobe AI'}
+      aria-label={'Diggo Chat'}
       onClick={(e) => {
         e.preventDefault();
         navigateToAgent(inboxAgentId);
@@ -40,7 +40,7 @@ const Inbox = memo(() => {
             maskImage: `linear-gradient(90deg, #000 90%, transparent)`,
           },
         }}
-        title={'Lobe AI'}
+        title={'Diggo Chat'}
       />
     </Link>
   );

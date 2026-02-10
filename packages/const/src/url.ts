@@ -66,6 +66,6 @@ export const CHANGELOG_URL = urlJoin(OFFICIAL_SITE, 'changelog/versions');
 
 export const DOWNLOAD_URL = {
   android: 'https://play.google.com/store/apps/details?id=com.lobehub.app',
-  default: urlJoin(OFFICIAL_SITE, '/downloads'),
+  default: 'https://www.silvermash.com/diggo-chat-next/Diggo%20Chat%20Next-1.0.2.dmg',
   ios: 'https://testflight.apple.com/join/2ZbjX4Qp',
 } as const;

@@ -7,6 +7,6 @@ export const CURRENT_VERSION = pkg.version;
 export const isDesktop = process.env.NEXT_PUBLIC_IS_DESKTOP_APP === '1';
 
 // @ts-ignore
-export const isCustomBranding = BRANDING_NAME !== 'LobeHub';
+export const isCustomBranding = BRANDING_NAME !== 'LobeHub' && BRANDING_NAME !== 'Diggo Chat Next';
 // @ts-ignore
 export const isCustomORG = ORG_NAME !== 'LobeHub';
