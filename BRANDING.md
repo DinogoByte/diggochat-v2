@@ -99,7 +99,46 @@ rg "'Lobe AI'" src/ packages/
 
 ---
 
-## 三、加载页面品牌文字
+## 三、产品 Logo（左上角 3D 图标）
+
+**文件**: `src/components/Branding/ProductLogo/index.tsx`
+
+上游使用 `@lobehub/ui/brand` 的 `<LobeHub />` 组件渲染 3D logo（从 npmmirror CDN 加载）。
+我们直接替换为本地图片。
+
+```tsx
+// before
+import { LobeHub, type LobeHubProps } from '@lobehub/ui/brand';
+import { isCustomBranding } from '@/const/version';
+import CustomLogo from './Custom';
+
+export const ProductLogo = memo<ProductLogoProps>((props) => {
+  if (isCustomBranding) return <CustomLogo {...props} />;
+  return <LobeHub {...props} />;
+});
+
+// after
+import Image from '@/libs/next/Image';
+
+export const ProductLogo = memo<ProductLogoProps>(({ size = 32, ...rest }) => {
+  return (
+    <Image
+      alt="Diggo Chat"
+      height={size}
+      src="/avatars/diggo-chat.png"
+      unoptimized
+      width={size}
+      {...rest}
+    />
+  );
+});
+```
+
+> 此组件在多处使用：onboarding、settings、auth 页面、分享预览等。改一处全局生效。
+
+---
+
+## 四、加载页面品牌文字
 
 **文件**: `src/components/Loading/BrandTextLoading/index.tsx`
 
@@ -123,7 +162,7 @@ const DiggoChatText = () => (
 
 ---
 
-## 四、PWA Manifest（开发环境）
+## 五、PWA Manifest（开发环境）
 
 **文件**: `src/app/manifest.ts`
 
@@ -138,7 +177,7 @@ description: 'Diggo Chat Next Development',
 
 ---
 
-## 五、i18n 国际化
+## 六、i18n 国际化
 
 ### 默认 locale
 
@@ -177,7 +216,7 @@ done
 
 ---
 
-## 六、静态资源替换
+## 七、静态资源替换
 
 源文件：项目根目录 `new-icon.png`（蓝色圆角方形图标）
 
@@ -244,15 +283,16 @@ PYEOF
 
 ---
 
-## 七、完整文件清单
+## 八、完整文件清单
 
-### 代码文件（16 个）
+### 代码文件（17 个）
 
 ```
 packages/business/const/src/branding.ts
 packages/const/src/version.ts
 packages/const/src/url.ts
 packages/const/src/meta.ts
+src/components/Branding/ProductLogo/index.tsx
 src/components/Loading/BrandTextLoading/index.tsx
 src/app/manifest.ts
 src/locales/default/chat.ts
@@ -307,7 +347,7 @@ locales/*/chat.json  （修改 inbox.title 字段）
 
 ---
 
-## 八、upstream 同步后的恢复步骤
+## 九、upstream 同步后的恢复步骤
 
 ```bash
 # 1. 同步上游
